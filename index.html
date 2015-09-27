@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8">
 
-        <title>reveal.js - The HTML Presentation Framework</title>
+        <title>Domain Driven Deisign dans Symfony</title>
 
-        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-        <meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="Domain Driven Deisign dans Symfony">
+        <meta name="author" content="Maxime Colin">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -61,95 +61,107 @@
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Domain</h2>
-                        <p>Data Model</p>
-                        <p>View Model</p>
-                        <p>Repository interfaces</p>
-                        <p>Adapters interfaces</p>
-                        <p>Domain services</p>
-                    </section>
-
-                    <section>
-                        <h2>Domain</h2>
-                        <pre><code style="word-wrap: break-word;">namespace VendorName\Domain;</code></pre>
-                    </section>
+                    <h2>Domain</h2>
+                    <p class="fragment">Data Model</p>
+                    <p class="fragment">View Model</p>
+                    <p class="fragment">Repository interfaces</p>
+                    <p class="fragment">Adapters interfaces</p>
+                    <p class="fragment">Domain services</p>
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Application</h2>
-                        <p>Business actions</p>
-                        <p>Business logic</p>
-                        <p>Business services</p>
-                    </section>
-
-                    <section>
-                        <h2>Application</h2>
-                        <pre><code style="word-wrap: break-word;">namespace VendorName\Application;</code></pre>
-                    </section>
+                    <h2>Domain</h2>
+                    <pre><code style="word-wrap: break-word;">namespace VendorName\Domain;</code></pre>
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Infrastructure</h2>
-                        <p>Repository implementations</p>
-                        <p>Persistence layer</p>
-                        <p>Adapters implementations</p>
-                        <p>Services definitions (DIC)</p>
-                    </section>
-
-                    <section>
-                        <h2>There is a bundle for that</h2>
-                        <pre><code style="word-wrap: break-word;">namespace VendorName\Bundle\InfrastuctureBundle;</code></pre>
-                    </section>
+                    <h2>Application</h2>
+                    <p class="fragment">Business actions</p>
+                    <p class="fragment">Business logic</p>
+                    <p class="fragment">Business services</p>
+                    <p class="fragment">Adapters interfaces</p>
                 </section>
 
                 <section>
-                    <section>
-                        <h2>UI</h2>
-                        <p>Symfony stuff</p>
-                        <p>Controllers</p>
-                        <p>Forms</p>
-                        <p>Views</p>
-                    </section>
-                    <section>
-                        <h2>One bundle for each entry point</h2>
-                        <pre><code style="word-wrap: break-word;">namespace VendorName\Bundle\AppBundle;</code></pre>
-                        <pre><code style="word-wrap: break-word;">namespace VendorName\Bundle\ApiBundle;</code></pre>
-                    </section>
+                    <h2>Application</h2>
+                    <pre><code style="word-wrap: break-word;">namespace VendorName\Application;</code></pre>
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Read / Write separation</h2>
-                        <p>Models for read only purpose</p>
-                        <p>Models for write purpose</p>
-                    </section>
-                    <section>
-                        <h2>Read</h2>
-                        <p>Hydrate your query results in read only data</p>
-                        <pre><code style="word-wrap: break-word;">SELECT new ArticleListView(a.title, a.author) FROM Entity:Article</code></pre>
-                    </section>
-                    <section>
-                        <h2>Write</h2>
-                        <p>Use entities for write purpose only</p>
-                    </section>
+                    <h2>Infrastructure</h2>
+                    <p class="fragment">Repository implementations</p>
+                    <p class="fragment">Persistence layer</p>
+                    <p class="fragment">Adapters implementations</p>
+                    <p class="fragment">Services definitions (DIC)</p>
+                </section>
+
+                <section>
+                    <h2>There is a bundle for that</h2>
+                    <pre><code style="word-wrap: break-word;">namespace VendorName\Bundle\InfrastuctureBundle;</code></pre>
+                </section>
+
+                <section>
+                    <h2>Doctrine config</h2>
+                    <pre><code style="word-wrap: break-word;">
+doctrine:
+    orm:
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: false
+        mappings:
+            entity:
+                type: yml
+                prefix: Acme\Domain\Model
+                dir: %kernel.root_dir%/../src/Acme/Bundle/InfrastructureBundle/Resources/config/doctrine/entity
+                alias: Entity
+                is_bundle: false
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>UI</h2>
+                    <p class="fragment">Symfony stuff</p>
+                    <p class="fragment">Controllers</p>
+                    <p class="fragment">Forms</p>
+                    <p class="fragment">Views</p>
+                </section>
+
+                <section>
+                    <h2>One bundle for each entry point</h2>
+                    <pre><code style="word-wrap: break-word;">namespace VendorName\Bundle\AppBundle;</code></pre>
+                    <pre><code style="word-wrap: break-word;">namespace VendorName\Bundle\ApiBundle;</code></pre>
+                </section>
+
+                <section>
+                    <h2>Read / Write separation</h2>
+                    <p class="fragment">Models for read only purpose</p>
+                    <p class="fragment">Models for write purpose</p>
+                </section>
+
+                <section>
+                    <h2>Read</h2>
+                    <p>Hydrate your query results in read only data</p>
+                    <pre><code style="word-wrap: break-word;">SELECT new ArticleListView(a.title, a.author) FROM Entity:Article</code></pre>
+                </section>
+
+                <section>
+                    <h2>Write</h2>
+                    <p>Use entities for write purpose only</p>
                 </section>
 
                 <section>
                     <h2>Framework agnostic code</h2>
-                    <p>Use command bus...</p>
-                    <p>or request/response service...</p>
-                    <p>or even manager</p>
-                    <p>No business code in controllers</p>
-                    <p>Easier to test</p>
+                    <p class="fragment">Use command bus...</p>
+                    <p class="fragment">or request/response service...</p>
+                    <p class="fragment">or even manager</p>
+                    <p class="fragment">No business code in controllers</p>
+                    <p class="fragment">Easier to test</p>
                 </section>
 
                 <section>
                     <h2>Comminicate with Symfony using...</h2>
-                    <p>Events</p>
-                    <p>Exceptions</p>
+                    <p class="fragment">Events</p>
+                    <p class="fragment">Exceptions</p>
                 </section>
 
                 <section>
@@ -158,11 +170,63 @@
                     <p>Validation is easier</p>
                 </section>
 
+                <section data-background="./img/tips.jpg">
+                </section>
+
+                <section>
+                    <h2>Comment domain model</h2>
+                     <pre><code style="word-wrap: break-word;">
+/**
+ * "Gabarit"
+ */
+class Pattern
+{
+}
+                     </code></pre>
+                </section>
+
                 <section data-background="./img/buzz.jpeg">
                     <h2>To infinity and beyond</h2>
                 </section>
 
-                <section></section>
+                <section>
+                    <h2>Specification</h2>
+                    <p>Put your business rules in reusable classes</p>
+                    <p>See <a href="https://github.com/maximecolin/satisfaction">maximecolin/satisfaction</a></p>
+                </section>
+
+                <section>
+                    <h2>More DDD</h2>
+                    <p>Less getter/setter</p>
+                    <p>More domain method</p>
+                </section>
+
+                <section>
+                    Replace
+                    <pre><code style="word-wrap: break-word;">
+$article->setPublished(true);
+$article->setPublished(false);
+                    </code></pre>
+                    by
+                    <pre><code style="word-wrap: break-word;">
+$article->publish();
+$article->unpublish();
+                    </code></pre>
+                </section>
+
+                <section>
+                    Replace
+                    <pre><code style="word-wrap: break-word;">
+$product = new Product()
+$product->setTitle('Lorem ipsum');
+$product->setDecription('Foobar');
+$product->setPrice(15.99);
+                    </code></pre>
+                    by
+                    <pre><code style="word-wrap: break-word;">
+$product = new Product('Lorem ipsum', 'Foobar', 15.99);
+                    </code></pre>
+                </section>
 
                 <section data-markdown>
                     <script type="text/template">
