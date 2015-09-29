@@ -213,6 +213,48 @@ class Pattern
                     <p>Throw general exception for others</p>
                 </section>
 
+                <section>
+                    <h2>Custom query builder</h2>
+                    <p class="fragment">Reusable and chainable query builder</p>
+                    <p class="fragment">Put criteria/filter in method</p>
+                    <p class="fragment">Create many query builder as you want</p>
+                </section>
+
+                <section>
+                    <h2>Custom query builder</h2>
+                     <pre><code style="word-wrap: break-word;">
+class ArticleQueryBuilder
+{
+    public function __construct(EntityManager $em)
+    {
+        parent::__construct($em);
+
+        $this
+            ->select('article')
+            ->from('Entity:Article', 'article');
+    }
+}
+                     </code></pre>
+                </section>
+
+                <section>
+                    <h2>Custom query builder</h2>
+                     <pre><code style="word-wrap: break-word;">
+class ArticleQueryBuilder
+{
+    public function isPublished(\DateTime $at)
+    {
+        $this
+            ->andWhere('article.published = TRUE')
+            ->andWhere('article.publishedAt < :at')
+            ->setParameter('at', $at);
+
+        return $this;
+    }
+}
+                     </code></pre>
+                </section>
+
                 <section data-background="./img/buzz.jpeg">
                     <h2>To infinity and beyond</h2>
                 </section>
