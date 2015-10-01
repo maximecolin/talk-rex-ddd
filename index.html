@@ -134,9 +134,18 @@ doctrine:
                 </section>
 
                 <section>
-                    <h2>Read / Write separation</h2>
-                    <p class="fragment">Models for read only purpose</p>
-                    <p class="fragment">Models for write purpose</p>
+                    <h2>CQRS</h2>
+                    <img src="img/cqrs.jpg" />
+                </section>
+
+                <section>
+                    <h2>Command Query Responsibility Seggregation</h2>
+                </section>
+
+                <section>
+                    <h2>Separate Read from Write</h2>
+                    <p>Models for read only purpose</p>
+                    <p>Models for write purpose</p>
                 </section>
 
                 <section>
@@ -162,6 +171,7 @@ doctrine:
                     <p class="fragment">Use command bus...</p>
                     <p class="fragment">or request/response service...</p>
                     <p class="fragment">or even manager</p>
+                    <p class="fragment">No Symfony dependencies</p>
                     <p class="fragment">No business code in controllers</p>
                     <p class="fragment">Easier to test</p>
                 </section>
@@ -179,6 +189,7 @@ doctrine:
                 </section>
 
                 <section data-background="./img/tips.jpg">
+                    <h2>Protips</h2>
                 </section>
 
                 <section>
@@ -299,13 +310,35 @@ $product = new Product('Lorem ipsum', 'Foobar', 15.99);
                 </section>
 
                 <section>
+                    <h2>Doctrine embeddables</h2>
+                    <p>Doctrine 2.5</p>
+                    <pre><code style="word-wrap: break-word;">
+/** @Entity */
+class User
+{
+    /** @Embedded(class = "Address", columnPrefix = "myPrefix_") */
+    private $address;
+}
+                    </code></pre>
+
+                    <pre><code style="word-wrap: break-word;">SELECT u FROM User u WHERE u.address.city = :myCity</code></pre>
+                </section>
+
+                <section>
+                    <h2>UUID</h2>
+                    <pre><code style="word-wrap: break-word;">216f-ff40-98d9-11e3-a5e2-0800-200c-9a66</code></pre>
+                </section>
+
+                <section>
                     <h2>Symfony</h2>
                     <p class="fragment">Controller as service</p>
                     <p class="fragment">YAML routing</p>
                     <p class="fragment">No @Template, @Route, ...</p>
                 </section>
 
-                <section data-background="./img/questions.jpg"></section>
+                <section data-background="./img/questions.jpg">
+                    <h2>Questions ?</h2>
+                </section>
 
             </div>
 
